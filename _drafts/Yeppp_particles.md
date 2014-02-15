@@ -46,9 +46,10 @@ Why is this more cache efficient? Simply because memory controllers fetch multip
 2. The garbage collector won't fragment array memory during compaction. I have no idea if this is true or not.
 3. Memory won't be moved around in the middle of an update. This probably isn't true, although it may be possible to circumvent by using Marshal.AllocHGlobal, which allocates memory from outside the .Net process. In your face Garbage Collector!
 Another concern is thread interference. All the threads share the same cache, so when one thread gets some execution time, what does it do to the cache? Do threads store their own copies of the cache and do a flush and replace when they become active? I should find that out.  
-With these changes to the particle class, the new movement modifier looks like this:
-CODE
 
+With these changes to the particle class, the new movement modifier looks like this:  
+CODE
+This code processes blocks of particles, YepppConstants.BufferLength particles at a time. This sample has YepppConstants.BufferLength set to 8192, but that was based on trial and error profiling. I expect that the optimal block size will be different on different hardware. Yeppp supports a fairly basic set of primitive operations right now (add, subtract, multiply, dot product, sum, sum of squares, min and max) and some more complex operation (exp, log etc), but this is largely all that's needed for a particle system. There are a few things missing that would make a big difference (sum of squares between two different arrays, sqrt - this would make a big difference to performance if it used the SSE reciprocal square root instructions!) so hopefully they'll be added soon.
 
 
 
