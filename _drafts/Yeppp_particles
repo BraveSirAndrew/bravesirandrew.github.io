@@ -1,0 +1,17 @@
+Converting a particle system to use Yeppp.
+Sometimes when writing C# code, you come across a problem that could use a little more performance. Particle systems are a great example of this. A particle is generally represented using a structure with simple properties, such as position, colour, age etc, and there can be hundreds of thousands, or even millions, of these structures in memory at the same time, and all of them need to be updated every frame. The types of updates you can do are specific to your games needs, but you'll almost always have some sort of movement type update for example. The intuitive way to process all these updates is to simply loop over each particle and change it's position based on some velocity, something like
+
+while(count-- > 0)
+{
+  particle->X += particle->VelocityX * elapsedTime;
+  particle->Y += particle->VelocityY * elapsedTime;
+  particle++;
+}
+
+I'm using a pointer to a particle here for speed, and integrating by time to make it frame rate independent.
+
+Basics of how Mercury works, with a nice diagram
+Initially array of structures approach.
+Really cool efficient use of pointers in .Net
+Take one of the modifiers (Move is nice and simple) and show the conversion to Yeppp
+How to copy this to device memory and set up streams so that it can be read from.
