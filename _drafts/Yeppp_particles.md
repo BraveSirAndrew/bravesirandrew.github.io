@@ -51,9 +51,7 @@ With these changes to the particle class, the new movement modifier looks like t
 CODE
 This code processes blocks of particles, YepppConstants.BufferLength particles at a time. This sample has YepppConstants.BufferLength set to 8192, but that was based on trial and error profiling. I expect that the optimal block size will be different on different hardware. Yeppp supports a fairly basic set of primitive operations right now (add, subtract, multiply, dot product, sum, sum of squares, min and max) and some more complex operation (exp, log etc), but this is largely all that's needed for a particle system. There are a few things missing that would make a big difference (sum of squares between two different arrays, sqrt - this would make a big difference to performance if it used the SSE reciprocal square root instructions!) so hopefully they'll be added soon.
 
-
-
-Initially array of structures approach.
-Really cool efficient use of pointers in .Net
-Take one of the modifiers (Move is nice and simple) and show the conversion to Yeppp
-How to copy this to device memory and set up streams so that it can be read from.
+## Rendering
+The diffuculty with keeping particles in this format is getting them onto the graphics card in an efficient way. What's good for cache corhency on the CPU is the exact polar opposite of what's good on the GPU. Fun stuff. I've basically ignored that for now though:) Having said that, this doesn't seem to have effected rendering efficiency in any way. Can anyone explain that? I'm using memcpy to transfer each component into a locked vertex buffer contiguously. I'm then using one stream for each component. The vertex declaration looks like this:  
+    Codes
+The test app was written against DirectX9 but the engine we use for Honourbound works on OpenGL, so we'll need to find a similar way to do the same there. Should be doable though.
