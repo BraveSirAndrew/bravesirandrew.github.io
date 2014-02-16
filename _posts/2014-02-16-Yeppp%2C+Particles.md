@@ -1,3 +1,12 @@
+---
+layout: post
+category : other
+tagline: "Particles"
+tags : [graphics, particles, directx, opengl, c#]
+---
+{% include JB/setup %}
+
+
 # Converting a particle system to use Yeppp.
 Sometimes when writing C# code, you come across performance problems that just can't be solved in straight C#. Particle systems are a great example of this. A particle is generally represented using a structure with simple properties, such as position, colour, age etc, and there can be hundreds of thousands, or even millions, of these structures in memory at the same time, and all of them need to be updated every frame. The types of updates you can do are specific to your games needs, but you'll almost certainly have some sort of movement type update for example. The intuitive way to process all these updates is to simply loop over each particle and change it's position based on some velocity, something like
 
