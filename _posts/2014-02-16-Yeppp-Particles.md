@@ -1,5 +1,6 @@
 ---
 layout: post
+title: Yeppp, particles!
 category : other
 tagline: "Particles"
 tags : [graphics, particles, directx, opengl, c#]
